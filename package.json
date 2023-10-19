@@ -1,0 +1,8 @@
+{
+  "name": "typescript-crud",
+  "version": "1.0.0",
+  "description": "application use to crud management",
+  "main": "index.js",
+  "author": "hanhtran",
+  "license": "MIT"
+}
