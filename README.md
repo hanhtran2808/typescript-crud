@@ -2,7 +2,9 @@
 
 # How to start application
 1. yarn install
-2. yarn start-dev
+2. your local environment have to a database that application can connect it (currently, i'm using POSTGRES)
+3. you have to create a <b>.env</b> file, you can clonne .env_example into repository and then config base on your database connection
+4. yarn start-dev
 
 # Guide to use application
 1. Use to postman or curl to run application
