@@ -1,5 +1,6 @@
 import express, { Application, Request, Response } from "express";
 import Database from "./config/database";
+import ArticleRouter from "./router/ArticleRouter";
 
 class App {
   public app: Application;
@@ -7,24 +8,31 @@ class App {
   constructor() {
     this.app = express();
     this.databaseSync();
-    this.routes()
+    this.plugins();
+    this.routes();
   }
 
-  protected databaseSync():void{
+  protected plugins(): void {
+    this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: true }));
+  }
+
+  protected databaseSync(): void {
     const db = new Database();
-    db.sequelize?.sync()
+    db.sequelize?.sync();
   }
 
   protected routes(): void {
     this.app.route("/").get((req: Request, res: Response) => {
       res.send("welcome home");
     });
+    this.app.use("/api/v1/article", ArticleRouter);
   }
 }
 
-const port:number = 8000
-const app = new App().app
+const port: number = 8000;
+const app = new App().app;
 
 app.listen(port, () => {
-    console.log("Server started successfully!");
-})
+  console.log("✅ Server started successfully!");
+});
